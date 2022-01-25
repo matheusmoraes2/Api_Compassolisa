@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@joi/date": "^2.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.0",
+    "express": "^4.17.2",
+    "joi": "^17.5.0",
+    "mongoose": "^6.1.8",
+    "mongoose-aggregate-paginate-v2": "^1.0.6",
+    "mongoose-paginate-v2": "^1.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "name": "api_compassolisa",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "author": "Matheus Moraes",
+  "license": "ISC",
+  "description": ""
+}
