@@ -20,11 +20,50 @@ class CarService {
     }
     async delete(id){
         const dados = await CarRepository.find({_id:id})
-        console.log(dados)
         if(dados.Cars.length === 0){
             throw new Error('Not found')
         }
         await CarRepository.delete(id)
+    }
+    async put(id,payload){
+        const dados = await this.findId(id)
+        this.FoundAcessorio(dados,payload.acessorios)
+        const ObjModelo = this.validateModelo(payload.modelo)
+        const ObjAno = this.validateAno(payload.ano)
+        const ObjCor = this.validateCor(payload.cor)
+        const ObjQp = this.validateQp(payload.quantidadePassageiros)
+        const ObjAcessorio = this.FormatAcessorio(payload)
+
+        const Obj = Object.assign({},ObjModelo,ObjAno,ObjCor,ObjQp)
+        const data = await CarRepository.put(id,Obj,ObjAcessorio)
+        return data
+    }
+
+    FormatAcessorio(payload){
+        let obj = {}
+        if(typeof payload.acessorios !== 'undefined'){
+            obj = {acessorios:payload.acessorios}
+        }
+        return obj
+    }
+    FoundAcessorio(dados,Facessorios){
+        const obj = dados.acessorios
+        const busca = Facessorios
+        for(let i=0; i<obj.length;i++){
+            for(let j=0; j<busca.length;j++){
+                if(obj[i].descricao === busca[j].descricao){
+                    throw new Error('Acessorio already exists')
+                }
+            }
+        }
+    }
+    async findId(id){
+        const dados = await CarRepository.findId(id)
+        if(dados.length === 0){
+            throw new Error('Not found')
+        }else{
+            return dados
+        }
     }
 
     validateId(id){

@@ -28,8 +28,15 @@ class CarRepository {
         const retorno = await CarSchema.paginate(payload,options,{})
         return retorno
     }
+    async findId(id){
+        return CarSchema.findOne({_id:id},'-__v')
+    }
     async delete(id){
         await CarSchema.deleteOne({_id:id})
+    }
+    async put(id,payload,acessorio){
+        await CarSchema.updateOne({_id:id},{$push:acessorio})
+        await CarSchema.updateOne({_id:id},payload)
     }
 
 }
