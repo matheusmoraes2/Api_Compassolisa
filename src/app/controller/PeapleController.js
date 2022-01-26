@@ -1,4 +1,5 @@
 const PeapleService = require('../service/PeapleService')
+const ErrorStatus = require('../error/ErrorStatus')
 
 class PeapleController{
     async create(req,res,next){
@@ -6,7 +7,7 @@ class PeapleController{
             const data = await PeapleService.create(req.body)
             return res.status(201).json(data)
         }catch(error){
-            return res.status(500).json(error.message)
+            return res.status(ErrorStatus(error)).json(error.message)
         }
     }
     async find(req,res,next){
@@ -19,7 +20,7 @@ class PeapleController{
             const data = await PeapleService.find(nome,cpf,Bd,email,habilitado)
             return res.status(200).json(data)  
         }catch(error){
-            return res.status(404).json(error.message)
+            return res.status(ErrorStatus(error)).json(error.message)
         }
     }
     async put(req,res,next){
@@ -29,7 +30,7 @@ class PeapleController{
             await PeapleService.put(id,data)
             res.status(204).end()
         }catch(error){
-            res.status(400).json(error.message)
+            res.status(ErrorStatus(error)).json(error.message)
         }
     }
     async delete(req,res,next){
@@ -38,7 +39,16 @@ class PeapleController{
             await PeapleService.delete(id)
             res.status(204).end()
         }catch(error){
-            res.status(404).json(error.message)
+            res.status(ErrorStatus(error)).json(error.message)
+        }
+    }
+    async findId(req,res,next){
+        try{
+            const id = req.params.id
+            const data = await PeapleService.findId(id)
+            res.status(200).json(data)
+        }catch(error){
+            res.status(ErrorStatus(error)).json(error.message)
         }
     }
 

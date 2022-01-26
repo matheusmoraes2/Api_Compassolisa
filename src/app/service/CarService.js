@@ -1,5 +1,7 @@
 const CarRepository = require('../repository/CarRepository')
 const { PaginationParameters } = require('mongoose-paginate-v2')
+const NotFound = require('../error/NotFound')
+const AlreadyExists = require('../error/AlreadyExists')
 
 class CarService {
     async create(payload) {
@@ -16,6 +18,10 @@ class CarService {
         const ObjId = this.validateId(_id)
         const obj = Object.assign({}, ObjModelo, ObjCor,ObjAcessorio,ObjQp,ObjId) 
         const data = await CarRepository.find(obj)
+        if(data.Cars.length === 0){
+            throw new NotFound(`Object`)
+        }
+
         return data
     }
     async delete(id){
@@ -49,16 +55,15 @@ class CarService {
         for(let i=0; i<obj.length;i++){
             for(let j=0; j<busca.length;j++){
                 if(obj[i].descricao === busca[j].descricao){
-                    throw new Error('Acessorio already exists')
+                    throw new AlreadyExists(`descricao:'${busca[j].descricao}'`)
                 }
             }
         }
     }
     async findId(id){
         const dados = await CarRepository.findId(id)
-        console.log(dados)
         if(dados === null){
-            throw new Error('Not found')
+            throw new NotFound(`Id:${id}`)
         }else{
             return dados
         }

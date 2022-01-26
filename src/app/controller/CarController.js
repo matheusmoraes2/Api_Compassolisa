@@ -1,4 +1,6 @@
 const CarService = require('../service/CarService')
+const Erros = require('../error/ErrorStatus')
+const ErrorStatus = require('../error/ErrorStatus')
 
 class CarController {
     async create(req,res,next){
@@ -6,7 +8,7 @@ class CarController {
             const data = await CarService.create(req.body)
             return res.status(201).json(data)
         }catch(error){
-            return res.status(400).json(error.message)
+            return res.status(ErrorStatus(error)).json(error.message)
         }
     }
 
@@ -21,7 +23,7 @@ class CarController {
             const data = await CarService.find(modelo,cor,ano,acessorio,quantidadePassageiros,_id)
             return res.status(200).json(data)
         }catch(error){
-            return res.status(404).json(error.message)
+            return res.status(ErrorStatus(error)).json(error.message)
         }
     }
 
@@ -31,7 +33,7 @@ class CarController {
             await CarService.delete(id)
             return res.status(204).end()            
         }catch(error){
-            return res.status(404).json(error.message)
+            return res.status(ErrorStatus(error)).json(error.message)
         }
     }
     async put(req,res,next){
@@ -41,7 +43,7 @@ class CarController {
             const data = await CarService.put(id,dados)
             return res.status(204).json(data)
         }catch(error){
-            res.status(404).json(error.message)
+            res.status(ErrorStatus(error)).json(error.message)
         }
     }
     async findId(req,res,next){
@@ -50,7 +52,7 @@ class CarController {
         const data = await CarService.findId(id)
         res.status(200).json(data)
         }catch(error){
-            res.status(404).json(error.message)
+            res.status(ErrorStatus(error)).json(error.message)
         }
     }
 }

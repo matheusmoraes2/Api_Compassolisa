@@ -1,5 +1,7 @@
 const PeapleRepository = require('../repository/PeapleRepository')
 const moment = require('moment')
+const NotFound = require('../error/NotFound')
+const InvalidBody = require('../error/InvalidBody')
 
 class PeapleService{
     async create(payload){
@@ -16,7 +18,7 @@ class PeapleService{
 
         const Obj = Object.assign({},ObjNome,ObjCpf,ObjsBd,ObjEmail,ObjHabilitado)
         const data = await PeapleRepository.find(Obj)
-        if(data.Peaple.length === 0)throw new Error('Not Found!')
+        if(data.Peaple.length === 0)throw new NotFound(`Object`)
         return data
     }
     async put(id,payload){
@@ -33,7 +35,7 @@ class PeapleService{
     async findId(id){
         const data = await PeapleRepository.findId(id)
         if(data === null){
-            throw new Error('Not Found!')
+            throw new NotFound(`Id:'${id}'`)
         }else{
             return data
         }
@@ -88,7 +90,7 @@ class PeapleService{
         const mesDiff = dataM - nascM
         const diaDiff = dataD - nascD
         if ((anoDiff < 18) || (anoDiff === 18 && mesDiff < 0 ) || (anoDiff === 18 && mesDiff === 0 && diaDiff < 0)){
-            throw new Error('you must be at least 18 years old')
+            throw new InvalidBody(`you must be at least 18 years old. data_nascimento: '${data}',`)
         }
     }
 
