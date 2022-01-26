@@ -7,7 +7,7 @@ module.exports = async (req,res,next) => {
     try{
         const CarSchema = Joi.object({
             nome: Joi.string().required().trim(),
-            cpf: Joi.string().pattern(/[^\d]/g, '').length(11).required(),
+            cpf: Joi.string().replace(/[^\d]/g, '').length(11).required(),
             data_nascimento: Joi.date().format('DD/MM/YYYY').raw().required(),
             email: Joi.string().email().required(),
             senha: Joi.string().min(6).required(),
