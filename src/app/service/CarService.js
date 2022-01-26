@@ -19,10 +19,7 @@ class CarService {
         return data
     }
     async delete(id){
-        const dados = await CarRepository.find({_id:id})
-        if(dados.Cars.length === 0){
-            throw new Error('Not found')
-        }
+        await this.findId(id)
         await CarRepository.delete(id)
     }
     async put(id,payload){
@@ -59,7 +56,8 @@ class CarService {
     }
     async findId(id){
         const dados = await CarRepository.findId(id)
-        if(dados.length === 0){
+        console.log(dados)
+        if(dados === null){
             throw new Error('Not found')
         }else{
             return dados
