@@ -22,6 +22,25 @@ class PeapleController{
             return res.status(404).json(error.message)
         }
     }
+    async put(req,res,next){
+        try{
+            const id = req.params.id
+            const data = req.body
+            await PeapleService.put(id,data)
+            res.status(204).end()
+        }catch(error){
+            res.status(400).json(error.message)
+        }
+    }
+    async delete(req,res,next){
+        try{
+            const id = req.params.id
+            await PeapleService.delete(id)
+            res.status(204).end()
+        }catch(error){
+            res.status(404).json(error.message)
+        }
+    }
 
 }
 

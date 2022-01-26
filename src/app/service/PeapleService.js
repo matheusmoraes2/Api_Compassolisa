@@ -19,6 +19,26 @@ class PeapleService{
         if(data.Peaple.length === 0)throw new Error('Not Found!')
         return data
     }
+    async put(id,payload){
+        if(payload.data_nascimento !== null){
+            this.validateData(payload.data_nascimento)
+        }
+        await this.findId(id)
+        await PeapleRepository.put(id,payload)
+    }
+    async delete(id){
+        await this.findId(id)
+        await PeapleRepository.delete(id)
+    }
+    async findId(id){
+        const data = await PeapleRepository.findId(id)
+        if(data === null){
+            throw new Error('Not Found!')
+        }else{
+            return data
+        }
+    }
+
     ValidateHabilitado(habilitado){
         let obj = {}
         if (typeof habilitado !== 'undefined') {
