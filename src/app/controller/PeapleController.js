@@ -51,6 +51,17 @@ class PeapleController{
             res.status(ErrorStatus(error)).json(error.message)
         }
     }
+    async login(req,res,next){
+        try{
+            const email = req.body.email
+            const senha = req.body.senha
+
+            const user = await PeapleService.login(email,senha)
+            res.status(200).send({ auth: true, user })
+        }catch(error){
+            res.status(ErrorStatus(error)).json(error.message)
+        }
+    }
 
 }
 

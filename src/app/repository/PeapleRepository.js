@@ -35,6 +35,9 @@ class PeapleRepository{
     async findId(id){
         return PeapleSchema.findOne({_id:id},'-__v')
     }
+    async authenticate(email){
+        return PeapleSchema.findOne({email:email})
+    }
 }
 
 module.exports = new PeapleRepository

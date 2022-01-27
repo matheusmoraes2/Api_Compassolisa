@@ -16,7 +16,7 @@ class CarService {
         const ObjAcessorio = this.validateAcessorio(acessorio)
         const ObjQp = this.validateQp(quantidadePassageiros)
         const ObjId = this.validateId(_id)
-        const obj = Object.assign({}, ObjModelo, ObjCor,ObjAcessorio,ObjQp,ObjId) 
+        const obj = Object.assign({}, ObjModelo, ObjCor,ObjAcessorio,ObjQp,ObjId,ObjAno) 
         const data = await CarRepository.find(obj)
         if(data.Cars.length === 0){
             throw new NotFound(`Object`)

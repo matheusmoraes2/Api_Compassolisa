@@ -2,6 +2,9 @@ const PeapleRepository = require('../repository/PeapleRepository')
 const moment = require('moment')
 const NotFound = require('../error/NotFound')
 const InvalidBody = require('../error/InvalidBody')
+const LoginError = require('../error/LoginError')
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
 class PeapleService{
     async create(payload){
@@ -39,6 +42,17 @@ class PeapleService{
         }else{
             return data
         }
+    }
+    async login(email,senha){
+        const data = await PeapleRepository.authenticate(email)
+        if (data === null || data.senha !== senha){
+            throw new LoginError()
+        }
+        const token = jwt.sign({ email }, process.env.SECRET, {
+            expiresIn: 300 
+        });
+        const Obj = Object.assign({},{token:token,email:data.email,habilitado:data.habilitado})
+        return Obj
     }
 
     ValidateHabilitado(habilitado){
