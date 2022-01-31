@@ -1,33 +1,33 @@
-const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate-v2')
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const CarSchema = mongoose.Schema({
-modelo: {
+  modelo: {
     type:String,
     required: true
-},
-cor: {
+  },
+  cor: {
     type: String,
     required: true
-},
-ano: {
+  },
+  ano: {
     type: String,
     required: true
-},
-acessorios:[{
+  },
+  acessorios:[{
     descricao: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
-}],
-quantidadePassageiros: {
+  }],
+  quantidadePassageiros: {
     type: Number,
     required: true
-}
+  }
 
-})
+});
 
-CarSchema.plugin(mongoosePaginate)
-const Car = mongoose.model('Car', CarSchema)
+CarSchema.plugin(mongoosePaginate);
+const Car = mongoose.model('Car', CarSchema);
         
-module.exports = Car
+module.exports = Car;

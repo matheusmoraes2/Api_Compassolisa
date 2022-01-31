@@ -1,38 +1,38 @@
-const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate-v2')
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const PeapleSchema = mongoose.Schema({
-nome: {
+  nome: {
     type: String,
     required: true
-},
-cpf: {
+  },
+  cpf: {
     type: String,
     required: true
-},
-data_nascimento: {
+  },
+  data_nascimento: {
     type: String,
     required: true
-},
-email: {
+  },
+  email: {
     type: String,
     required: true
-},
+  },
 
-senha: {
+  senha: {
     type: String,
     required: true,
     bcrypt: true
-},
-habilitado: {
+  },
+  habilitado: {
     type: String,
     required: true,
     enum : ['sim','não']
-}
+  }
 
-})
+});
 PeapleSchema.plugin(require('mongoose-bcrypt'));
-PeapleSchema.plugin(mongoosePaginate)
-const Peaple = mongoose.model('Peaple', PeapleSchema)
+PeapleSchema.plugin(mongoosePaginate);
+const Peaple = mongoose.model('Peaple', PeapleSchema);
         
-module.exports = Peaple
+module.exports = Peaple;

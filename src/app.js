@@ -1,10 +1,10 @@
-const express = require('express')
-const cors = require('cors')
-const router = require('./routes')
-require('./infra/database/mongo')
+const express = require('express');
+const cors = require('cors');
+const router = require('./routes');
+require('./infra/database/mongo');
 
 class App {
-    constructor() {
+  constructor() {
     this.server = express();
     this.middleware();
     this.routes();

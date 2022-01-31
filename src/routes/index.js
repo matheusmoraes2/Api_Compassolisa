@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const carRouter = require('./car.router')
-const peapleRouter = require('./peaple.router')
-const loginRouter = require('./login.router')
+const { Router } = require('express');
+const carRouter = require('./car.router');
+const peapleRouter = require('./peaple.router');
+const loginRouter = require('./login.router');
 
 module.exports = server => {
   server.use((req, res, next) => {
