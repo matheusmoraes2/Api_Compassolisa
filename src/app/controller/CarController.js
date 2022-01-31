@@ -14,13 +14,8 @@ class CarController {
 
     async find(req,res,next){
         try{
-            const modelo = req.query.modelo
-            const cor = req.query.cor
-            const ano = req.query.ano
-            const acessorio = req.query.acessorio
-            const quantidadePassageiros = req.query.quantidadePassageiros
-            const _id = req.query.id
-            const data = await CarService.find(modelo,cor,ano,acessorio,quantidadePassageiros,_id)
+            const {... query} = req.query
+            const data = await CarService.find(query)
             return res.status(200).json(data)
         }catch(error){
             return res.status(ErrorStatus(error)).json(error.message)
@@ -41,7 +36,7 @@ class CarController {
             const id = req.params.id
             const dados = req.body
             const data = await CarService.put(id,dados)
-            return res.status(204).json(data)
+            return res.status(204).end()
         }catch(error){
             res.status(ErrorStatus(error)).json(error.message)
         }

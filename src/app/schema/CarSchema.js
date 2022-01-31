@@ -19,7 +19,6 @@ acessorios:[{
         type: String,
         required: true,
     },
-    _id: false
 }],
 quantidadePassageiros: {
     type: Number,

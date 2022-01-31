@@ -21,7 +21,8 @@ email: {
 
 senha: {
     type: String,
-    required: true
+    required: true,
+    bcrypt: true
 },
 habilitado: {
     type: String,
@@ -30,7 +31,7 @@ habilitado: {
 }
 
 })
-
+PeapleSchema.plugin(require('mongoose-bcrypt'));
 PeapleSchema.plugin(mongoosePaginate)
 const Peaple = mongoose.model('Peaple', PeapleSchema)
         

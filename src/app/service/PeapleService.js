@@ -5,6 +5,7 @@ const InvalidBody = require('../error/InvalidBody')
 const LoginError = require('../error/LoginError')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
 
 class PeapleService{
     async create(payload){
@@ -12,28 +13,27 @@ class PeapleService{
         const data = await PeapleRepository.create(payload)
         return data
     }
-    async find(nome,cpf,Bd,email,habilitado){
-        const ObjNome = this.ValidateNome(nome)
-        const ObjCpf = this.VailidateCpf(cpf)
-        const ObjsBd = this.ValidateBd(Bd)
-        const ObjEmail = this.ValidateEmail(email)
-        const ObjHabilitado = this.ValidateHabilitado(habilitado)
-
-        const Obj = Object.assign({},ObjNome,ObjCpf,ObjsBd,ObjEmail,ObjHabilitado)
-        const data = await PeapleRepository.find(Obj)
+    async find(query){
+        let object = query
+        if(query.hasOwnProperty('nome')){
+            const nome = {nome: { $regex: '.*' + query.nome + '.*' }}
+            delete query.nome
+            object = Object.assign({},query,nome)   
+        }
+        const data = await PeapleRepository.find(object)
         if(data.Peaple.length === 0)throw new NotFound(`Object`)
         return data
     }
     async put(id,payload){
-        if(payload.data_nascimento !== null){
+        if(typeof payload.data_nascimento !== 'undefined'){
             this.validateData(payload.data_nascimento)
         }
-        await this.findId(id)
-        await PeapleRepository.put(id,payload)
+        const data = await PeapleRepository.put(id,payload)
+        if(data === null)throw new NotFound(`Id:'${id}'`)
     }
     async delete(id){
-        await this.findId(id)
-        await PeapleRepository.delete(id)
+        const data = await PeapleRepository.delete(id)
+        if(data === null)throw new NotFound(`Id:'${id}'`)
     }
     async findId(id){
         const data = await PeapleRepository.findId(id)
@@ -43,9 +43,11 @@ class PeapleService{
             return data
         }
     }
-    async login(email,senha){
+    async login(payload){
+        const senha = payload.senha
+        const email = payload.email
         const data = await PeapleRepository.authenticate(email)
-        if (data === null || data.senha !== senha){
+        if (data === null || !(await bcrypt.compare(senha, data.senha))){
             throw new LoginError()
         }
         const token = jwt.sign({ email }, process.env.SECRET, {
@@ -55,45 +57,9 @@ class PeapleService{
         return Obj
     }
 
-    ValidateHabilitado(habilitado){
-        let obj = {}
-        if (typeof habilitado !== 'undefined') {
-            obj = {habilitado:habilitado}
-        }
-        return obj
-    }
-    ValidateEmail(email){
-        let obj = {}
-        if (typeof email !== 'undefined') {
-            obj = {email:email}
-        }
-        return obj
-    }
-    ValidateBd(Bd){
-        let obj = {}
-        if (typeof Bd !== 'undefined') {
-            obj = {Bd:Bd}
-        }
-        return obj
-    }
-    VailidateCpf(cpf){
-        let obj = {}
-        if (typeof cpf !== 'undefined') {
-            obj = {cpf:cpf}
-        }
-        return obj
-    }
-    ValidateNome(nome){
-        let obj = {}
-        if (typeof nome !== 'undefined') {
-            obj = { nome: { $regex: '.*' + nome + '.*' } }
-        }
-        return obj
-    }
 
     validateData(data){
-        const birthday = moment(data, "DD/MM/YYYY")
-        const Formatdata = birthday.format("YYYY-MM-DD")
+        const Formatdata = moment(data, "DD/MM/YYYY")
         const nascY = new Date(Formatdata).getFullYear()
         const nascM = new Date(Formatdata).getMonth()
         const nascD = new Date(Formatdata).getDate()

@@ -12,12 +12,8 @@ class PeapleController{
     }
     async find(req,res,next){
         try{
-            const nome = req.query.nome
-            const cpf = req.query.cpf
-            const Bd = req.query.data_nascimento
-            const email = req.query.email
-            const habilitado = req.query.habilitado
-            const data = await PeapleService.find(nome,cpf,Bd,email,habilitado)
+            const {... query} = req.query
+            const data = await PeapleService.find(query)
             return res.status(200).json(data)  
         }catch(error){
             return res.status(ErrorStatus(error)).json(error.message)
@@ -53,10 +49,7 @@ class PeapleController{
     }
     async login(req,res,next){
         try{
-            const email = req.body.email
-            const senha = req.body.senha
-
-            const user = await PeapleService.login(email,senha)
+            const user = await PeapleService.login(req.body)
             res.status(200).send({ auth: true, user })
         }catch(error){
             res.status(ErrorStatus(error)).json(error.message)

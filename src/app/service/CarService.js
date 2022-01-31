@@ -1,5 +1,4 @@
 const CarRepository = require('../repository/CarRepository')
-const { PaginationParameters } = require('mongoose-paginate-v2')
 const NotFound = require('../error/NotFound')
 const AlreadyExists = require('../error/AlreadyExists')
 
@@ -8,16 +7,15 @@ class CarService {
         const data = await CarRepository.create(payload)
         return data
     }
-    async find(modelo,cor,ano,acessorio,quantidadePassageiros,_id){
+    async find(query){
+        let object = query
+        if(query.hasOwnProperty('acessorio')){
+            const acessorio = {"acessorios.descricao": query.acessorio}
+            delete query.acessorio
+            object = Object.assign({},query,acessorio)   
+        }
 
-        const ObjModelo = this.validateModelo(modelo)
-        const ObjCor = this.validateCor(cor)
-        const ObjAno = this.validateAno(ano)
-        const ObjAcessorio = this.validateAcessorio(acessorio)
-        const ObjQp = this.validateQp(quantidadePassageiros)
-        const ObjId = this.validateId(_id)
-        const obj = Object.assign({}, ObjModelo, ObjCor,ObjAcessorio,ObjQp,ObjId,ObjAno) 
-        const data = await CarRepository.find(obj)
+        const data = await CarRepository.find(object)
         if(data.Cars.length === 0){
             throw new NotFound(`Object`)
         }
@@ -25,33 +23,25 @@ class CarService {
         return data
     }
     async delete(id){
-        await this.findId(id)
-        await CarRepository.delete(id)
+        const data = await CarRepository.delete(id)
+        if(data === null)throw new NotFound(`Id:${id}`)
     }
     async put(id,payload){
         const dados = await this.findId(id)
-        this.FoundAcessorio(dados,payload.acessorios)
-        const ObjModelo = this.validateModelo(payload.modelo)
-        const ObjAno = this.validateAno(payload.ano)
-        const ObjCor = this.validateCor(payload.cor)
-        const ObjQp = this.validateQp(payload.quantidadePassageiros)
-        const ObjAcessorio = this.FormatAcessorio(payload)
-
-        const Obj = Object.assign({},ObjModelo,ObjAno,ObjCor,ObjQp)
-        const data = await CarRepository.put(id,Obj,ObjAcessorio)
-        return data
-    }
-
-    FormatAcessorio(payload){
-        let obj = {}
+       let data
         if(typeof payload.acessorios !== 'undefined'){
-            obj = {acessorios:payload.acessorios}
+            this.SearchingAcessorio(dados,payload.acessorios)
+            const Acessorio = {acessorios:payload.acessorios}
+            delete payload.acessorios
+            data = await CarRepository.putAcessorios(id,Acessorio)
         }
-        return obj
+        data = await CarRepository.put(id,payload)
+        if(data === null)throw new NotFound(`Id:${id}`)
     }
-    FoundAcessorio(dados,Facessorios){
+
+    SearchingAcessorio(dados,acessorios){
         const obj = dados.acessorios
-        const busca = Facessorios
+        const busca = acessorios
         for(let i=0; i<obj.length;i++){
             for(let j=0; j<busca.length;j++){
                 if(obj[i].descricao === busca[j].descricao){
@@ -69,48 +59,6 @@ class CarService {
         }
     }
 
-    validateId(id){
-         let obj = {}
-        if (typeof id !== 'undefined') {
-            obj = {_id:id}
-        }
-        return obj
-    }
-    validateQp(qp){
-        let obj = {}
-        if (typeof qp !== 'undefined') {
-            obj = {quantidadePassageiros:qp}
-        }
-        return obj
-    }
-    validateAcessorio(acessorio){
-        let obj = {}
-        if (typeof acessorio !== 'undefined') {
-            obj = {"acessorios.descricao": acessorio}
-        }
-        return obj
-    }
-    validateAno(ano){
-        let obj = {}
-        if (typeof ano !== 'undefined') {
-            obj = {ano:ano}
-        }
-        return obj
-    }
-    validateCor(cor){
-        let obj = {}
-        if (typeof cor !== 'undefined') {
-            obj = {cor:cor}
-        }
-        return obj
-    }
-    validateModelo(modelo){
-        let obj = {}
-        if (typeof modelo !== 'undefined') {
-            obj = {modelo:modelo}
-        }
-        return obj
-    }
 }
 
 module.exports = new CarService

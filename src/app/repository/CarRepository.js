@@ -29,14 +29,16 @@ class CarRepository {
         return retorno
     }
     async findId(id){
-        return CarSchema.findOne({_id:id},'-__v')
+        return CarSchema.findById(id,'-__v')
     }
     async delete(id){
-        await CarSchema.deleteOne({_id:id})
+        return CarSchema.findOneAndDelete({_id:id})
     }
-    async put(id,payload,acessorio){
-        await CarSchema.updateOne({_id:id},{$push:acessorio})
-        await CarSchema.updateOne({_id:id},payload)
+    async put(id,payload){
+        return CarSchema.findOneAndUpdate({_id:id},payload)
+    }
+    async putAcessorios(id,acessorios){
+        return CarSchema.findOneAndUpdate({_id:id},{$push:acessorios})
     }
 
 }

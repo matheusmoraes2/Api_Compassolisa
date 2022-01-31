@@ -27,13 +27,13 @@ class PeapleRepository{
         return retorno
     }
     async put(id,payload){
-        await PeapleSchema.updateOne({_id:id},payload)
+        return PeapleSchema.findOneAndUpdate({_id:id},payload)
     }
     async delete(id){
-        await PeapleSchema.deleteOne({_id:id})
+        return PeapleSchema.findOneAndDelete({_id:id})
     }
     async findId(id){
-        return PeapleSchema.findOne({_id:id},'-__v')
+        return PeapleSchema.findById(id,'-__v')
     }
     async authenticate(email){
         return PeapleSchema.findOne({email:email})
