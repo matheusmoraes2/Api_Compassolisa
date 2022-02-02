@@ -25,9 +25,8 @@ class PeapleService{
     return data;
   }
   async put(id,payload){
-    if(typeof payload.data_nascimento !== 'undefined'){
       this.validateData(payload.data_nascimento);
-    }
+    
     const data = await PeapleRepository.put(id,payload);
     if(data === null)throw new NotFound(`Id:'${id}'`);
   }

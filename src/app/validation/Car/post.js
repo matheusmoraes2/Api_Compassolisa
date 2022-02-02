@@ -6,8 +6,8 @@ const Joi = JoiImport.extend(DateExtension);
 module.exports = async (req,res,next) => {
   try{
     const CarSchema = Joi.object({
-      modelo: Joi.string().required().trim(),
-      cor: Joi.string().required().trim(),
+      modelo: Joi.string().trim().required(),
+      cor: Joi.string().trim().required(),
       ano: Joi.date().raw().less('2023').min('1950').required(),
       acessorios: Joi.array().items(Joi.object({
         descricao: Joi.string().required()
