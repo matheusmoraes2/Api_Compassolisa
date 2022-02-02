@@ -279,17 +279,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Node.js](https://nodejs.org/en/)
 - [Postman](https://pt-br.reactjs.org/)
 - [MongoDB](https://www.mongodb.com)
-
-Dependências usadas: 
-
-- [joi](https://www.npmjs.com/package/joi)
 - [mongoose](https://mongoosejs.com)
-- [dotenv](https://www.npmjs.com/package/dotenv)
 - [express](http://expressjs.com/)
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [cors](https://www.npmjs.com/package/cors)
-- [moment](https://momentjs.com/)
-- [mongoose-paginate-v2](https://www.npmjs.com/package/mongoose-paginate-v2)
+
 
 # 🧙 Agradecimentos
 
