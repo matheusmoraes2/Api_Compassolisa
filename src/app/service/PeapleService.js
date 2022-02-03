@@ -25,7 +25,7 @@ class PeapleService{
     return data;
   }
   async put(id,payload){
-      this.validateData(payload.data_nascimento);
+    this.validateData(payload.data_nascimento);
     
     const data = await PeapleRepository.put(id,payload);
     if(data === null)throw new NotFound(`Id:'${id}'`);

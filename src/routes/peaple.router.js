@@ -2,7 +2,7 @@ const PeapleController = require('../app/controller/PeapleController');
 const ValidatePost = require('../app/validation/People/post');
 const ValidatePut = require('../app/validation/People/put');
 const ValidateId = require('../app/validation/Car/objectID');
-const ValidateGet = require('../app/validation/People/get')
+const ValidateGet = require('../app/validation/People/get');
 
 module.exports = (server, routes , prefix = '/api/v1/people') => {
   routes.post('/', ValidatePost, PeapleController.create);
