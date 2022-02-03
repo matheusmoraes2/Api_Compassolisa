@@ -9,7 +9,7 @@ module.exports = async (req,res,next) => {
       modelo: Joi.string().trim(),
       cor: Joi.string().trim(),
       ano: Joi.date().raw().less('2023').min('1950'),
-      acessorios: Joi.string().trim(),
+      acessorio: Joi.string().trim(),
       quantidadePassageiros: Joi.number()
     }); 
 
