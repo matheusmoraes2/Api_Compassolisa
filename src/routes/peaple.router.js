@@ -3,7 +3,7 @@ const ValidatePost = require('../app/validation/Pessoa/post');
 const ValidatePut = require('../app/validation/Pessoa/put');
 const ValidateId = require('../app/validation/Car/objectID');
 
-module.exports = (server, routes , prefix = '/api/v1/peaple') => {
+module.exports = (server, routes , prefix = '/api/v1/people') => {
   routes.post('/', ValidatePost, PeapleController.create);
   routes.get('/', PeapleController.find);
   routes.put('/:id',ValidateId,ValidatePut,PeapleController.put);
