@@ -28,15 +28,14 @@ class CarService {
   }
   async put(id,payload){
     const dados = await this.findId(id);
-    let data;
-    if(typeof payload.acessorios !== 'undefined'){
-      this.SearchingAcessorio(dados,payload.acessorios);
-      const Acessorio = {acessorios:payload.acessorios};
-      delete payload.acessorios;
-      data = await CarRepository.putAcessorios(id,Acessorio);
-    }
-    data = await CarRepository.put(id,payload);
-    if(data === null)throw new NotFound(`Id:${id}`);
+
+    this.SearchingAcessorio(dados,payload.acessorios);
+    const Acessorio = {acessorios:payload.acessorios};
+    delete payload.acessorios;
+    const dataAcessorios = await CarRepository.putAcessorios(id,Acessorio);
+
+    const data = await CarRepository.put(id,payload);
+    if(data === null || dataAcessorios === null)throw new NotFound(`Id:${id}`);
   }
 
   SearchingAcessorio(dados,acessorios){
