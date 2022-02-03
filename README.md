@@ -49,7 +49,7 @@
 ### 📝 Rotas do projeto:
 > Rotas de carros: `localhost:3000/api/v1/car`
 
-> Rotas de pessoas: `localhost:3000/api/v1/peaple`
+> Rotas de pessoas: `localhost:3000/api/v1/people`
 
 > Rota de login: `localhost:3000/api/v1/authenticate`
 
@@ -180,7 +180,7 @@ Exemplo de retorno:
 ### REQUEST - (POST) 
 > Para cadastrar uma pessoa.
 
-> POST - ` localhost:3000/api/v1/peaple`
+> POST - ` localhost:3000/api/v1/people`
 
 Exemplo de body:
 ```json
@@ -202,7 +202,7 @@ Exemplo de body:
 ### REQUEST - (GET) 
 > Para listar todas as pessoas.
 
-> GET - `localhost:3000/api/v1/peaple`
+> GET - `localhost:3000/api/v1/people`
 
 - Todos os campos podem ser usados em buscas por query.
 
@@ -210,7 +210,7 @@ Exemplo de body:
 ### REQUEST - (PUT)
 > Para atualizar um registro de pessoa.
 
-> PUT - `localhost:3000/api/v1/peaple/:id`
+> PUT - `localhost:3000/api/v1/people/:id`
 
 Exemplo de body:
 ```json
@@ -229,14 +229,14 @@ Exemplo de body:
 
 > Para deletar um registro de pessoa.
 
-> DELETE - `localhost:3000/api/v1/peaple/:id`
+> DELETE - `localhost:3000/api/v1/people/:id`
 
 
 ### REQUEST - (GET)
 
 > Para buscar uma pessoa por id.
 
-> GET - `localhost:3000/api/v1/peaple/:id`
+> GET - `localhost:3000/api/v1/people/:id`
 
 Exemplo de retorno:
 ```json
