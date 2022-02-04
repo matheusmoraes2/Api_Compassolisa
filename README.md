@@ -37,6 +37,7 @@
  cd API_Compassolisa
 
 # crie um arquivo .env seguindo o modelo do arquivo .env.exemplo e preencha os campos
+ onde o DB_PORT é a porta, DB_PATHDB é o caminho do seu banco de dados e SECRET é a chave de criptografia 
 
 # Instale as dependências
  npm i
