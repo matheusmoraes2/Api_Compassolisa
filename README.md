@@ -36,6 +36,8 @@
 # Acesse a pasta do projeto 
  cd API_Compassolisa
 
+# crie um arquivo .env seguindo o modelo do arquivo .env.exemplo e preencha os campos
+
 # Instale as dependências
  npm i
 
