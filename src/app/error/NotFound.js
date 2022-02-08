@@ -1,8 +1,8 @@
 class NotFound extends Error {
   constructor(object) {
     super(`${object} Not found`);
-    this.name = 'NotFound';
-    this.idErro = 0;
+    this.description = `Not Found`
+    this.name = `${object} Not found`
   }
 }
 

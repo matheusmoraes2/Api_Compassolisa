@@ -2,6 +2,7 @@ const JoiImport = require('joi');
 const DateExtension = require ('@joi/date');
 
 const Joi = JoiImport.extend(DateExtension);
+const joiError = require('../JoiError')
 
 module.exports = async (req,res,next) => {
   try{
@@ -14,10 +15,10 @@ module.exports = async (req,res,next) => {
       habilitado: Joi.string().valid('sim','não').required(),
     }); 
 
-    const {error} = await PeopleSchema.validate(req.body,{abortEarl:true});
+    const {error} = await PeopleSchema.validate(req.body,{abortEarly:false});
     if(error) throw error ;
     return next();
   }catch(error){
-    return res.status(400).json(error.message);
+    return res.status(400).json(joiError(error.details));
   }
 };

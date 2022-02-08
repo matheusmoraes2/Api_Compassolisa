@@ -17,14 +17,14 @@ class CarService {
 
     const data = await CarRepository.find(object);
     if(data.Cars.length === 0){
-      throw new NotFound('Object');
+      throw new NotFound(JSON.stringify(object));
     }
 
     return data;
   }
   async delete(id){
     const data = await CarRepository.delete(id);
-    if(data === null)throw new NotFound(`Id:${id}`);
+    if(data === null)throw new NotFound(`Id: ${id}`);
   }
   async put(id,payload){
     const dados = await this.findId(id);
@@ -35,7 +35,7 @@ class CarService {
     const dataAcessorios = await CarRepository.putAcessorios(id,Acessorio);
 
     const data = await CarRepository.put(id,payload);
-    if(data === null || dataAcessorios === null)throw new NotFound(`Id:${id}`);
+    if(data === null || dataAcessorios === null)throw new NotFound(`Id: ${id}`);
   }
 
   SearchingAcessorio(dados,acessorios){
@@ -52,7 +52,7 @@ class CarService {
   async findId(id){
     const dados = await CarRepository.findId(id);
     if(dados === null){
-      throw new NotFound(`Id:${id}`);
+      throw new NotFound(`Id: ${id}`);
     }else{
       return dados;
     }

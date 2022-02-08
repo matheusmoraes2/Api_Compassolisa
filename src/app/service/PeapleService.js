@@ -3,12 +3,14 @@ const moment = require('moment');
 const NotFound = require('../error/NotFound');
 const InvalidBody = require('../error/InvalidBody');
 const LoginError = require('../error/LoginError');
+const AlreadyExists = require('../error/AlreadyExists')
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 class PeapleService{
   async create(payload){
+    await this.verifyEmailSenha(payload.email,payload.cpf)
     this.validateData(payload.data_nascimento);
     const data = await PeapleRepository.create(payload);
     return data;
@@ -21,10 +23,11 @@ class PeapleService{
       object = Object.assign({},query,nome);   
     }
     const data = await PeapleRepository.find(object);
-    if(data.Peaple.length === 0)throw new NotFound('Object');
+    if(data.Peaple.length === 0)throw new NotFound(JSON.stringify(query));
     return data;
   }
   async put(id,payload){
+    await this.verifyEmailSenha(payload.email,payload.cpf)
     this.validateData(payload.data_nascimento);
     
     const data = await PeapleRepository.put(id,payload);
@@ -54,6 +57,19 @@ class PeapleService{
     });
     const Obj = Object.assign({},{token:token,email:data.email,habilitado:data.habilitado});
     return Obj;
+  }
+
+  async verifyEmailSenha(email,cpf){
+    
+    const dataEmail = await PeapleRepository.authenticate(email)
+    const dataSenha = await PeapleRepository.verifyCpf(cpf)
+    
+    if(dataEmail !== null){
+      throw new AlreadyExists(`Email: ${email}`)
+    }
+    if(dataSenha !== null){
+      throw new AlreadyExists(`Cpf: ${cpf}`)
+    } 
   }
 
 

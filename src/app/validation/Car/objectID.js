@@ -1,5 +1,6 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const joiError = require('../JoiError')
 
 module.exports = async (req,res,next) => {
   try{
@@ -7,10 +8,10 @@ module.exports = async (req,res,next) => {
       id: Joi.objectId()
     }); 
 
-    const {error} = await CarSchema.validate(req.params,{abortEarl:true});
+    const {error} = await CarSchema.validate(req.params,{abortEarly:false});
     if(error) throw error ;
     return next();
   }catch(error){
-    return res.status(400).json(error.message);
+    return res.status(400).json(joiError(error.details));
   }
 };

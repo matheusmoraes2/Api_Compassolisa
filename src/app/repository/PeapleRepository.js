@@ -38,6 +38,9 @@ class PeapleRepository{
   async authenticate(email){
     return PeapleSchema.findOne({email:email});
   }
+  async verifyCpf(cpf){
+    return PeapleSchema.findOne({cpf:cpf});
+  }
 }
 
 module.exports = new PeapleRepository;

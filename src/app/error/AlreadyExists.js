@@ -1,8 +1,8 @@
 class AlreadyExists extends Error {
   constructor(campo) {
     super(`${campo} Already Exists`);
-    this.name = 'AlreadyExists';
-    this.idErro = 2;
+    this.description = 'Already Exists'
+    this.name = `${campo} Already Exists`;
   }
 }
 

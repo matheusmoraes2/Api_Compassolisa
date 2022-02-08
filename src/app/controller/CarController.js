@@ -7,7 +7,7 @@ class CarController {
       const data = await CarService.create(req.body);
       return res.status(201).json(data);
     }catch(error){
-      return res.status(ErrorStatus(error)).json(error.message);
+      return res.status(ErrorStatus(error)).json(error);
     }
   }
 
@@ -17,7 +17,7 @@ class CarController {
       const data = await CarService.find(query);
       return res.status(200).json(data);
     }catch(error){
-      return res.status(ErrorStatus(error)).json(error.message);
+      return res.status(ErrorStatus(error)).json(error);
     }
   }
 
@@ -27,7 +27,7 @@ class CarController {
       await CarService.delete(id);
       return res.status(204).end();            
     }catch(error){
-      return res.status(ErrorStatus(error)).json(error.message);
+      return res.status(ErrorStatus(error)).json(error);
     }
   }
   async put(req,res){
@@ -37,7 +37,7 @@ class CarController {
       await CarService.put(id,dados);
       return res.status(204).end();
     }catch(error){
-      res.status(ErrorStatus(error)).json(error.message);
+      res.status(ErrorStatus(error)).json(error);
     }
   }
   async findId(req,res){
@@ -46,7 +46,7 @@ class CarController {
       const data = await CarService.findId(id);
       res.status(200).json(data);
     }catch(error){
-      res.status(ErrorStatus(error)).json(error.message);
+      res.status(ErrorStatus(error)).json(error);
     }
   }
 }

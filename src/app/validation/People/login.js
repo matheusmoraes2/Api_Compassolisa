@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const joiError = require('../JoiError')
 
 module.exports = async (req,res,next) => {
   try{
@@ -7,10 +8,10 @@ module.exports = async (req,res,next) => {
       senha: Joi.string().min(6).required(),
     }); 
 
-    const {error} = await PeopleSchema.validate(req.body,{abortEarl:true});
+    const {error} = await PeopleSchema.validate(req.body,{abortEarly:false});
     if(error) throw error ;
     return next();
   }catch(error){
-    return res.status(400).json(error.message);
+    return res.status(400).json(joiError(error.details));
   }
 };

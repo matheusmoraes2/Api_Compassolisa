@@ -8,7 +8,8 @@ const PeapleSchema = mongoose.Schema({
   },
   cpf: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   data_nascimento: {
     type: String,
@@ -16,7 +17,8 @@ const PeapleSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
 
   senha: {
