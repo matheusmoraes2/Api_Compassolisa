@@ -27,26 +27,25 @@ class CarService {
     if(data === null)throw new NotFound(`Id: ${id}`);
   }
   async put(id,payload){
-    const dados = await this.findId(id);
+    //const dados = await this.findId(id);
 
-    this.SearchingAcessorio(dados,payload.acessorios);
-    const Acessorio = {acessorios:payload.acessorios};
-    delete payload.acessorios;
-    const dataAcessorios = await CarRepository.putAcessorios(id,Acessorio);
+    //this.SearchingAcessorio(dados,payload.acessorios);
+    //const Acessorio = {acessorios:payload.acessorios};
+    //delete payload.acessorios;
+    //const dataAcessorios = await CarRepository.putAcessorios(id,Acessorio);
 
     const data = await CarRepository.put(id,payload);
-    if(data === null || dataAcessorios === null)throw new NotFound(`Id: ${id}`);
+    if(data === null )throw new NotFound(`Id: ${id}`);
   }
 
-  SearchingAcessorio(dados,acessorios){
+  async SearchingAcessorio(id,acessorios){
+    const dados = await this.findId(id)
+
     const obj = dados.acessorios;
-    const busca = acessorios;
     for(let i=0; i<obj.length;i++){
-      for(let j=0; j<busca.length;j++){
-        if(obj[i].descricao === busca[j].descricao){
-          throw new AlreadyExists(`descricao:'${busca[j].descricao}'`);
-        }
-      }
+        if(obj[i].descricao === acessorios.descricao){
+          throw new AlreadyExists(`descricao:'${acessorios.descricao}'`);
+        }      
     }
   }
   async findId(id){
@@ -56,6 +55,12 @@ class CarService {
     }else{
       return dados;
     }
+  }
+  async patchAcessorio(id,idAcessorio,acessorio){
+    await this.SearchingAcessorio(id,acessorio)
+
+    const data = await CarRepository.putAcessorios(id,idAcessorio,acessorio)
+    if(data === null)throw new NotFound(`Id: ${id}`)
   }
 
 }

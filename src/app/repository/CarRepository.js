@@ -37,8 +37,8 @@ class CarRepository {
   async put(id,payload){
     return CarSchema.findOneAndUpdate({_id:id},payload);
   }
-  async putAcessorios(id,acessorios){
-    return CarSchema.findOneAndUpdate({_id:id},{$push:acessorios});
+  async putAcessorios(id,idAcessorio,acessorio){
+    return CarSchema.findOneAndUpdate({_id:id,'acessorios._id':idAcessorio},{$set:{'acessorios.$':acessorio}})
   }
 
 }
