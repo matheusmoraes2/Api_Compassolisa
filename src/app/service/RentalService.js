@@ -57,6 +57,10 @@ class RentalService{
         const data = await RentalRepository.put(id,viaCep)
         if(data === null)throw new NotFound(`id: '${id}'`)
     }
+    async delete(id){
+        const data = await RentalRepository.delete(id)
+        if(data === null)throw new NotFound(`id: '${id}'`)
+    }
 }
 
 module.exports = new RentalService

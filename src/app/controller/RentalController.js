@@ -37,6 +37,15 @@ class RentalController{
             return res.status(ErrorStatus(error)).json(error)
         }
     }
+    async delete(req,res){
+        try{
+            const id = req.params.id
+            await RentalService.delete(id)
+            return res.status(204).end()
+        }catch(error){
+            return res.status(ErrorStatus(error)).json(error)
+        }
+    }
 }
 
 module.exports = new RentalController

@@ -30,10 +30,13 @@ class RentalRepository{
         return retorno;
     }
     async findId(id){
-        return RentalSchema.findById(id)
+        return RentalSchema.findById(id);
     }
     async put(id,payload){
-        return RentalSchema.findOneAndUpdate({_id:id},payload)
+        return RentalSchema.findOneAndUpdate({_id:id},payload);
+    }
+    async delete(id){
+        return RentalSchema.findOneAndDelete({_id:id});
     }
 }
 
