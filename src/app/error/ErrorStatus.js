@@ -2,6 +2,7 @@ const AlreadyExists = require('./AlreadyExists');
 const NotFound = require('./NotFound');
 const InvalidBody = require('./InvalidBody');
 const LoginError = require('../error/LoginError');
+const isFilialDuplicate = require('./IsFilialDuplicate')
 
 module.exports = (error) => {
   let status = 500;
@@ -16,6 +17,9 @@ module.exports = (error) => {
   }
   if(error instanceof LoginError){
     status = 500;
+  }
+  if(error instanceof isFilialDuplicate){
+    status = 400
   }
 
   

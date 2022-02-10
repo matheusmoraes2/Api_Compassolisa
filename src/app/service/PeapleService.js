@@ -62,12 +62,12 @@ class PeapleService{
   async verifyEmailSenha(email,cpf){
     
     const dataEmail = await PeapleRepository.authenticate(email)
-    const dataSenha = await PeapleRepository.verifyCpf(cpf)
+    const dataCpf = await PeapleRepository.verifyCpf(cpf)
     
     if(dataEmail !== null){
       throw new AlreadyExists(`Email: ${email}`)
     }
-    if(dataSenha !== null){
+    if(dataCpf !== null){
       throw new AlreadyExists(`Cpf: ${cpf}`)
     } 
   }
