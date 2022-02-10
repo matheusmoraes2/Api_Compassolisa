@@ -46,6 +46,17 @@ class RentalService{
         if(data === null)throw new NotFound(`id: '${id}'`)
         return data
     }
+    async put(id,payload){
+        this.isFilialDuplicate(payload.endereco)
+        const cnpj = await RentalRepository.findCnpj(payload.cnpj)
+        if(cnpj !== null){
+            const find = await this.findId(id)
+            if(cnpj.cnpj !== find.cnpj)throw new AlreadyExists(`Cnpj: '${payload.cnpj}'`)
+        } 
+        const viaCep = await this.FindCep(payload)
+        const data = await RentalRepository.put(id,viaCep)
+        if(data === null)throw new NotFound(`id: '${id}'`)
+    }
 }
 
 module.exports = new RentalService

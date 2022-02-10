@@ -28,6 +28,15 @@ class RentalController{
             return res.status(ErrorStatus(error)).json(error)
         }
     }
+    async put(req,res){
+        try{
+            const id = req.params.id
+            await RentalService.put(id,req.body)
+            return res.status(204).end()
+        }catch(error){
+            return res.status(ErrorStatus(error)).json(error)
+        }
+    }
 }
 
 module.exports = new RentalController

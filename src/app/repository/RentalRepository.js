@@ -32,6 +32,9 @@ class RentalRepository{
     async findId(id){
         return RentalSchema.findById(id)
     }
+    async put(id,payload){
+        return RentalSchema.findOneAndUpdate({_id:id},payload)
+    }
 }
 
 module.exports = new RentalRepository
