@@ -1,6 +1,7 @@
 const RentalRepository = require('../repository/RentalRepository');
 const isFilialDuplicate = require('../error/IsFilialDuplicate');
-const AlreadyExists = require('../error/AlreadyExists')
+const AlreadyExists = require('../error/AlreadyExists');
+const NotFound = require('../error/NotFound')
 const axios = require('axios');
 
 class RentalService{
@@ -33,6 +34,17 @@ class RentalService{
         if(j>1){
             throw new isFilialDuplicate()
         }
+    }
+    async find(query){
+        const obj = {}
+        const data = await RentalRepository.find(obj)
+        if(data.Rental.length === 0)throw new NotFound(JSON.stringify(query))
+        return data
+    }
+    async findId(id){
+        const data = await RentalRepository.findId(id)
+        if(data === null)throw new NotFound(`id: '${id}'`)
+        return data
     }
 }
 
