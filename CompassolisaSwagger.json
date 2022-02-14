@@ -814,6 +814,476 @@
           }
         }
       }
+    },
+    "/rental": {
+      "post": {
+        "summary": "Cria um novo registro de locadora",
+        "tags": [
+          "rental"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "atividades": {
+                    "type": "string"
+                  },
+                  "endereco": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "cep": {
+                          "type": "string"
+                        },
+                        "number": {
+                          "type": "number"
+                        },
+                        "isFilial": {
+                          "type": "boolean"
+                        },
+                        "complemento": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso",
+            "content": {
+              "applicatio/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "atividades": {
+                      "type": "string"
+                    },
+                    "endereco": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cep": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "number"
+                          },
+                          "isFilial": {
+                            "type": "boolean"
+                          },
+                          "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
+                            "type": "string"
+                          },
+                          "bairro": {
+                            "type": "string"
+                          },
+                          "localidade": {
+                            "type": "string"
+                          },
+                          "uf": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": "não foi possivel cadastrar a locadora"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Retorna todas as locadoras registradas.",
+        "tags": [
+          "rental"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "cnpj",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "atividades",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "cep",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "localidade",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "bairro",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "uf",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "logradouro",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Rental": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "nome": {
+                            "type": "string"
+                          },
+                          "cnpj": {
+                            "type": "string"
+                          },
+                          "atividades": {
+                            "type": "string"
+                          },
+                          "endereco": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cep": {
+                                  "type": "string"
+                                },
+                                "number": {
+                                  "type": "number"
+                                },
+                                "isFilial": {
+                                  "type": "boolean"
+                                },
+                                "logradouro": {
+                                  "type": "string"
+                                },
+                                "complemento": {
+                                  "type": "string"
+                                },
+                                "bairro": {
+                                  "type": "string"
+                                },
+                                "localidade": {
+                                  "type": "string"
+                                },
+                                "uf": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "type": "number"
+                    },
+                    "limit": {
+                      "type": "number"
+                    },
+                    "offsets": {
+                      "type": "number"
+                    },
+                    "offset": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Locadora não encontrada.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/{id}": {
+      "put": {
+        "summary": "Atualiza o registro de locadora",
+        "tags": [
+          "rental"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "atividades": {
+                    "type": "string"
+                  },
+                  "endereco": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "cep": {
+                          "type": "string"
+                        },
+                        "number": {
+                          "type": "number"
+                        },
+                        "isFilial": {
+                          "type": "boolean"
+                        },
+                        "complemento": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Atualizado com sucesso."
+          },
+          "400": {
+            "description": "Invalid body",
+            "content": {
+              "application/json": {
+                "example": "Invalid body"
+              }
+            }
+          },
+          "404": {
+            "description": "Locadora não encontrada",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um registro de locadora",
+        "tags": [
+          "rental"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Excluido com sucesso"
+          },
+          "400": {
+            "description": "Invalid body",
+            "content": {
+              "application/json": {
+                "example": "Invalid body"
+              }
+            }
+          },
+          "404": {
+            "description": "Locadora não encontrada",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Retorna a locadora com o id informado.",
+        "tags": [
+          "rental"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "atividades": {
+                      "type": "string"
+                    },
+                    "endereco": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cep": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "number"
+                          },
+                          "isFilial": {
+                            "type": "boolean"
+                          },
+                          "logradouro": {
+                            "type": "string"
+                          },
+                          "complemento": {
+                            "type": "string"
+                          },
+                          "bairro": {
+                            "type": "string"
+                          },
+                          "localidade": {
+                            "type": "string"
+                          },
+                          "uf": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Locadora não encontrada",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
