@@ -53,7 +53,7 @@ class PeapleService{
       throw new LoginError();
     }
     const token = jwt.sign({ email }, process.env.SECRET, {
-      expiresIn: 300 
+      expiresIn: '24h' 
     });
     const Obj = Object.assign({},{token:token,email:data.email,habilitado:data.habilitado});
     return Obj;
