@@ -1,28 +1,26 @@
 const AlreadyExists = require('./AlreadyExists');
 const NotFound = require('./NotFound');
 const InvalidBody = require('./InvalidBody');
-const LoginError = require('../error/LoginError');
-const isFilialDuplicate = require('./IsFilialDuplicate')
+const LoginError = require('./LoginError');
+const isFilialDuplicate = require('./IsFilialDuplicate');
 
 module.exports = (error) => {
   let status = 500;
-  if(error instanceof NotFound){
+  if (error instanceof NotFound) {
     status = 404;
   }
-  if(error instanceof InvalidBody){
+  if (error instanceof InvalidBody) {
     status = 400;
   }
-  if(error instanceof AlreadyExists){
+  if (error instanceof AlreadyExists) {
     status = 400;
   }
-  if(error instanceof LoginError){
+  if (error instanceof LoginError) {
     status = 500;
   }
-  if(error instanceof isFilialDuplicate){
-    status = 400
+  if (error instanceof isFilialDuplicate) {
+    status = 400;
   }
 
-  
   return status;
-    
 };

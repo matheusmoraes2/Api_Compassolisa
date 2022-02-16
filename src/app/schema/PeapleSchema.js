@@ -29,12 +29,12 @@ const PeapleSchema = mongoose.Schema({
   habilitado: {
     type: String,
     required: true,
-    enum : ['sim','não']
+    enum: ['sim', 'não']
   }
-
 });
 PeapleSchema.plugin(require('mongoose-bcrypt'));
+
 PeapleSchema.plugin(mongoosePaginate);
 const Peaple = mongoose.model('Peaple', PeapleSchema);
-        
+
 module.exports = Peaple;

@@ -1,10 +1,11 @@
 const PeapleSchema = require('../schema/PeapleSchema');
 
-class PeapleRepository{
-  async create(payload){
+class PeapleRepository {
+  async create(payload) {
     return PeapleSchema.create(payload);
   }
-  async find(payload){
+
+  async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
       docs: 'Peaple',
@@ -23,24 +24,29 @@ class PeapleRepository{
       customLabels: myCustomLabels
     };
 
-    const retorno = await PeapleSchema.paginate(payload,options,{});
+    const retorno = await PeapleSchema.paginate(payload, options, {});
     return retorno;
   }
-  async put(id,payload){
-    return PeapleSchema.findOneAndUpdate({_id:id},payload);
+
+  async put(id, payload) {
+    return PeapleSchema.findOneAndUpdate({ _id: id }, payload);
   }
-  async delete(id){
-    return PeapleSchema.findOneAndDelete({_id:id});
+
+  async delete(id) {
+    return PeapleSchema.findOneAndDelete({ _id: id });
   }
-  async findId(id){
-    return PeapleSchema.findById(id,'-__v');
+
+  async findId(id) {
+    return PeapleSchema.findById(id, '-__v');
   }
-  async authenticate(email){
-    return PeapleSchema.findOne({email:email});
+
+  async authenticate(email) {
+    return PeapleSchema.findOne({ email });
   }
-  async verifyCpf(cpf){
-    return PeapleSchema.findOne({cpf:cpf});
+
+  async verifyCpf(cpf) {
+    return PeapleSchema.findOne({ cpf });
   }
 }
 
-module.exports = new PeapleRepository;
+module.exports = new PeapleRepository();

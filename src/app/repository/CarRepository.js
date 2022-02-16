@@ -1,12 +1,11 @@
 const CarSchema = require('../schema/CarSchema');
 
 class CarRepository {
-  async create(payload){
+  async create(payload) {
     return CarSchema.create(payload);
   }
 
-  async find(payload){
-      
+  async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
       docs: 'Cars',
@@ -25,22 +24,28 @@ class CarRepository {
       customLabels: myCustomLabels
     };
 
-    const retorno = await CarSchema.paginate(payload,options,{});
+    const retorno = await CarSchema.paginate(payload, options, {});
     return retorno;
   }
-  async findId(id){
-    return CarSchema.findById(id,'-__v');
-  }
-  async delete(id){
-    return CarSchema.findOneAndDelete({_id:id});
-  }
-  async put(id,payload){
-    return CarSchema.findOneAndUpdate({_id:id},payload);
-  }
-  async putAcessorios(id,idAcessorio,acessorio){
-    return CarSchema.findOneAndUpdate({_id:id,'acessorios._id':idAcessorio},{$set:{'acessorios.$':acessorio}})
+
+  async findId(id) {
+    return CarSchema.findById(id, '-__v');
   }
 
+  async delete(id) {
+    return CarSchema.findOneAndDelete({ _id: id });
+  }
+
+  async put(id, payload) {
+    return CarSchema.findOneAndUpdate({ _id: id }, payload);
+  }
+
+  async putAcessorios(id, idAcessorio, acessorio) {
+    return CarSchema.findOneAndUpdate(
+      { _id: id, 'acessorios._id': idAcessorio },
+      { $set: { 'acessorios.$': acessorio } }
+    );
+  }
 }
 
-module.exports = new CarRepository;
+module.exports = new CarRepository();
