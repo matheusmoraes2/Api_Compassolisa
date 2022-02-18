@@ -6,7 +6,7 @@ const ValidatePut = require('../app/validation/Car/put');
 const ValidateId = require('../app/validation/Car/objectID');
 const ValidateGet = require('../app/validation/Car/get');
 const ValidatePatch = require('../app/validation/Car/patch');
-const ValidatePatchId = require('../app/validation/car/patchId');
+const ValidatePatchId = require('../app/validation/Car/patchId');
 
 module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.post('/', tokenBarer, ValidatePost, CarController.create);

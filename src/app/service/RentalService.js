@@ -1,6 +1,6 @@
 const axios = require('axios');
 const RentalRepository = require('../repository/RentalRepository');
-const isFilialDuplicate = require('../error/IsFilialDuplicate');
+const IsFilialDuplicate = require('../error/IsFilialDuplicate');
 const AlreadyExists = require('../error/AlreadyExists');
 const NotFound = require('../error/NotFound');
 
@@ -34,7 +34,7 @@ class RentalService {
       }
     }
     if (j > 1) {
-      throw new isFilialDuplicate();
+      throw new IsFilialDuplicate();
     }
   }
 
