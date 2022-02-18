@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">72.41% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/30</span>
+                <span class='fraction'>21/29</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">72.41% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/30</span>
+                <span class='fraction'>21/29</span>
             </div>
         
             
@@ -99,19 +99,19 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -120,44 +120,44 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const JoiImport = require('joi');
-const DateExtension = require ('@joi/date');
-const joiError = require('../JoiError')
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const JoiImport = require('joi');
+const DateExtension = require('@joi/date');
+const joiError = require('../JoiError');
 &nbsp;
 const Joi = JoiImport.extend(DateExtension);
 &nbsp;
-module.exports = async (req,res,next) =&gt; {
-  try{
+module.exports = async (req, res, next) =&gt; {
+  try {
     const CarSchema = Joi.object({
       modelo: Joi.string().trim(),
       cor: Joi.string().trim(),
       ano: Joi.date().raw().less('2023').min('1950'),
       acessorio: Joi.string().trim(),
       quantidadePassageiros: Joi.number()
-    }); 
+    });
 &nbsp;
-    const {error} = await CarSchema.validate(req.query,{abortEarly: false});
-    if(error) <span class="branch-0 cbranch-no" title="branch not covered" >throw e</span>rror ;
+    const { error } = await CarSchema.validate(req.query, { abortEarly: false });
+    if (error) <span class="branch-0 cbranch-no" title="branch not covered" >throw e</span>rror;
     return next();
-  }<span class="branch-0 cbranch-no" title="branch not covered" >catch(error){</span>
-<span class="cstat-no" title="statement not covered" >    //if(error.message === '\"ano\" must be less than or equal to \"1970-01-01T00:00:02.022Z\"'){</span>
+  } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >    // if(error.message === '\"ano\" must be less than or equal to \"1970-01-01T00:00:02.022Z\"'){</span>
 <span class="cstat-no" title="statement not covered" >    //  return res.status(400).json('\"ano\" must be less than or equal to \"2022"');</span>
-<span class="cstat-no" title="statement not covered" >    //}</span>
-<span class="cstat-no" title="statement not covered" >    //if(error.message === '"ano" must be greater than or equal to "1970-01-01T00:00:01.950Z"'){</span>
+<span class="cstat-no" title="statement not covered" >    // }</span>
+<span class="cstat-no" title="statement not covered" >    // if(error.message === '"ano" must be greater than or equal to "1970-01-01T00:00:01.950Z"'){</span>
 <span class="cstat-no" title="statement not covered" >    //  return res.status(400).json('"ano" must be greater than or equal to "1950"');</span>
-<span class="cstat-no" title="statement not covered" >    //}</span>
+<span class="cstat-no" title="statement not covered" >    // }</span>
 <span class="cstat-no" title="statement not covered" >    return res.status(400).json(joiError(error.details));</span>
-<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-};</pre></td></tr></table></pre>
+};
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Feb 11 2022 15:21:12 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Feb 18 2022 13:00:51 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

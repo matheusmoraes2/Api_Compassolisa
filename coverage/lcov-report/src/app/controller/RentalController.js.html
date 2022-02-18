@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.39% </span>
+                <span class="strong">96.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/51</span>
+                <span class='fraction'>53/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.39% </span>
+                <span class="strong">96.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>41/51</span>
+                <span class='fraction'>53/55</span>
             </div>
         
             
@@ -113,7 +113,12 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -127,100 +132,110 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const RentalService = require('../service/RentalService')
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const RentalService = require('../service/RentalService');
 const ErrorStatus = require('../error/ErrorStatus');
 &nbsp;
-class RentalController{
-    async create(req, res){
-        try{
-            const data = await RentalService.create(req.body)
-            return res.status(201).json(data)
-        }<span class="branch-0 cbranch-no" title="branch not covered" >catch(error){</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(ErrorStatus(error)).json(error)</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+class RentalController {
+  async create(req, res) {
+    try {
+      const data = await RentalService.create(req.body);
+      return res.status(201).json(data);
+    } <span class="branch-0 cbranch-no" title="branch not covered" >catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(ErrorStatus(error)).json(error);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+  }
+&nbsp;
+  async find(req, res) {
+    try {
+      const { ...query } = req.query;
+      const data = await RentalService.find(query);
+      return res.status(200).json(data);
+    } catch (error) {
+      return res.status(ErrorStatus(error)).json(error);
     }
-    async find(req,res){
-        try{
-            const {... query} = req.query
-            const data = await RentalService.find(query)
-            return res.status(200).json(data)
-        }<span class="branch-0 cbranch-no" title="branch not covered" >catch(error){</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(ErrorStatus(error)).json(error)</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+  }
+&nbsp;
+  async findId(req, res) {
+    try {
+      const { id } = req.params;
+      const data = await RentalService.findId(id);
+      return res.status(200).json(data);
+    } catch (error) {
+      return res.status(ErrorStatus(error)).json(error);
     }
-    async findId(req,res){
-        try{
-            const id = req.params.id
-            const data = await RentalService.findId(id)
-            return res.status(200).json(data)
-        }<span class="branch-0 cbranch-no" title="branch not covered" >catch(error){</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(ErrorStatus(error)).json(error)</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+  }
+&nbsp;
+  async put(req, res) {
+    try {
+      const { id } = req.params;
+      await RentalService.put(id, req.body);
+      return res.status(204).end();
+    } catch (error) {
+      return res.status(ErrorStatus(error)).json(error);
     }
-    async put(req,res){
-        try{
-            const id = req.params.id
-            await RentalService.put(id,req.body)
-            return res.status(204).end()
-        }<span class="branch-0 cbranch-no" title="branch not covered" >catch(error){</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(ErrorStatus(error)).json(error)</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+  }
+&nbsp;
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+      await RentalService.delete(id);
+      return res.status(204).end();
+    } catch (error) {
+      return res.status(ErrorStatus(error)).json(error);
     }
-    async delete(req,res){
-        try{
-            const id = req.params.id
-            await RentalService.delete(id)
-            return res.status(204).end()
-        }<span class="branch-0 cbranch-no" title="branch not covered" >catch(error){</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(ErrorStatus(error)).json(error)</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-    }
+  }
 }
 &nbsp;
-module.exports = new RentalController</pre></td></tr></table></pre>
+module.exports = new RentalController();
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Feb 11 2022 15:21:12 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Feb 18 2022 13:00:51 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>
