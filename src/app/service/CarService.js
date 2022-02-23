@@ -18,7 +18,7 @@ class CarService {
 
     const data = await CarRepository.find(object);
     if (data.Cars.length === 0) {
-      if (query === null) {
+      if (query === {}) {
         return data;
       }
 
