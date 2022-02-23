@@ -24,13 +24,13 @@ class PeapleService {
       object = { ...query, ...nome };
     }
     const data = await PeapleRepository.find(object);
-    if (data.Peaple.length === 0) {
-      if (query.length === 0) {
-        return data;
-      }
+    // if (data.Peaple.length === 0) {
+    //  if (query.length === 0) {
+    //    return data;
+    //  }
 
-      throw new NotFound(JSON.stringify(query));
-    }
+    //  throw new NotFound(JSON.stringify(query));
+    // }
     return data;
   }
 

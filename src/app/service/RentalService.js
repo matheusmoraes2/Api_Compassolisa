@@ -40,13 +40,13 @@ class RentalService {
 
   async find(query) {
     const data = await RentalRepository.find(query);
-    if (data.Rental.length === 0) {
-      if (query.length === 0) {
-        return data;
-      }
+    //   if (data.Rental.length === 0) {
+    //     if (query.length === 0) {
+    //       return data;
+    //     }
 
-      throw new NotFound(JSON.stringify(query));
-    }
+    //     throw new NotFound(JSON.stringify(query));
+    //   }
     return data;
   }
 

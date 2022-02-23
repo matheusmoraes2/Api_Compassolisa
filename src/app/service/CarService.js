@@ -17,13 +17,13 @@ class CarService {
     }
 
     const data = await CarRepository.find(object);
-    if (data.Cars.length === 0) {
-      if (query.length === 0) {
-        return data;
-      }
+    // if (data.Cars.length === 0) {
+    //   if (query.length === 0) {
+    //     return data;
+    //   }
 
-      throw new NotFound(JSON.stringify(object));
-    }
+    //   throw new NotFound(JSON.stringify(object));
+    // }
 
     return data;
   }
