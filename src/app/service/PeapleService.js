@@ -24,9 +24,8 @@ class PeapleService {
       object = { ...query, ...nome };
     }
     const data = await PeapleRepository.find(object);
-    console.log(query);
     if (data.Peaple.length === 0) {
-      if (query === {}) {
+      if (query.length === 0) {
         return data;
       }
 

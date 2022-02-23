@@ -72,6 +72,21 @@ describe('testando features da rota de Car', () => {
 
     expect(res.statusCode).toBe(200);
   });
+  it('Rota de get, ano inválido', async () => {
+    const res = await supertest(App).get('/api/v1/car?ano=1930').set('authorization', token);
+
+    expect(res.statusCode).toBe(400);
+  });
+  it('Rota de get, quantidadePassageiros inválido', async () => {
+    const res = await supertest(App).get('/api/v1/car?quantidadePassageiros=teste').set('authorization', token);
+
+    expect(res.statusCode).toBe(400);
+  });
+  it('Rota de get', async () => {
+    const res = await supertest(App).get('/api/v1/car');
+
+    expect(res.statusCode).toBe(401);
+  });
   it('Rota de get not found', async () => {
     const res = await supertest(App).get('/api/v1/car?modelo=não existe').set('authorization', token);
 
@@ -117,6 +132,14 @@ describe('testando features da rota de Car', () => {
       .send({ descricao: ' patch teste' });
 
     expect(res.statusCode).toBe(404);
+  });
+  it('Rota de patch, inválid id', async () => {
+    const res = await supertest(App)
+      .patch(`/api/v1/car/4654654654/acessorios/654687`)
+      .set('authorization', token)
+      .send({ descricao: ' patch teste' });
+
+    expect(res.statusCode).toBe(400);
   });
   it('Rota de Update', async () => {
     const res = await supertest(App)

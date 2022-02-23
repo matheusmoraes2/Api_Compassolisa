@@ -72,10 +72,43 @@ describe('testando features da rota de Rental', () => {
 
     expect(res.statusCode).toBe(400);
   });
+  it('Rota de post, falha no body filial duplicate', async () => {
+    const res = await supertest(App)
+      .post('/api/v1/rental')
+      .send({
+        nome: 'Teste Locadora de carros',
+        cnpj: '15.743.112/0021-55',
+        atividades: 'Aluguel de Carros E Gestão de Frotas',
+        endereco: [
+          {
+            cep: '50640-430',
+            number: '5258',
+            isFilial: false
+          },
+          {
+            cep: '50740-430',
+            number: '5258',
+            isFilial: false
+          }
+        ]
+      });
+
+    expect(res.statusCode).toBe(400);
+  });
   it('Rota de get', async () => {
     const res = await supertest(App).get('/api/v1/rental');
 
     expect(res.statusCode).toBe(200);
+  });
+  it('Rota de get,falha cep', async () => {
+    const res = await supertest(App).get('/api/v1/rental?cep=548.75');
+
+    expect(res.statusCode).toBe(400);
+  });
+  it('Rota de get,falha cep', async () => {
+    const res = await supertest(App).get('/api/v1/rental?cnpj=548.755.88');
+
+    expect(res.statusCode).toBe(400);
   });
   it('Rota de get, query not found', async () => {
     const res = await supertest(App).get('/api/v1/rental?nome=não existe');
