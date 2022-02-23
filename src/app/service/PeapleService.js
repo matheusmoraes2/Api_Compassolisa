@@ -24,7 +24,14 @@ class PeapleService {
       object = { ...query, ...nome };
     }
     const data = await PeapleRepository.find(object);
-    if (data.Peaple.length === 0) throw new NotFound(JSON.stringify(query));
+    console.log(query);
+    if (data.Peaple.length === 0) {
+      if (query === null) {
+        return data;
+      }
+
+      throw new NotFound(JSON.stringify(query));
+    }
     return data;
   }
 
