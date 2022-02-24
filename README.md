@@ -2,8 +2,15 @@
       <a href="#" alt="Compassolisa"> Compassolisa💻</a>
 </h1>
 
-Índice
-=================
+
+## Sobre o Projeto 
+
+<h3 align="center">
+  API para aluguel de carros, esta API permite que você faça o cadastro de vários carros, podendo fazer especificações de modelo, cor, acessorios e etc. Também é possivel 
+  cadastrar pessoas registrando seu nome, cpf, email e Locadoras registrando seu endereço, nome e CNPJ.
+</h3>
+
+## Índice
 <!--ts-->
    * [Sobre o Projeto](#sobre-o-projeto)
    * [Como usar a API ❓](#como-usar-a-api-)
@@ -17,16 +24,6 @@
    * [🛠 Tecnologias](#-tecnologias)
    * [🧙 Agradecimentos](#-agradecimentos)
 <!--te-->
-
-
-## Sobre o Projeto 
-
-<h3 align="center">
-  API para aluguel de carros, esta API permite que você faça o cadastro de vários carros, podendo fazer especificações de modelo, cor, acessorios e etc. Também é possivel 
-  cadastrar pessoas registrando seu nome, cpf, email e Locadoras registrando seu endereço, nome e CNPJ.
-</h3>
-
-
 
 
 ## Como usar a API ❓
