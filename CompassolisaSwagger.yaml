@@ -304,11 +304,11 @@ paths:
           content:
             application/json:
               example: "Invalid body"
-  /peaple:
+  /people:
     post: 
       summary: Cria um novo registro de pessoa
       tags:
-        - peaple
+        - people
       requestBody:
         content:
           application/json:
@@ -357,7 +357,7 @@ paths:
     get:
       summary: Retorna todas as pessoas registradas.
       tags:
-        - peaple
+        - people
       parameters:
       - name: nome
         in: query
@@ -424,11 +424,11 @@ paths:
           content:
             application/json:
               example: "Not found"
-  /peaple/{id}:
+  /people/{id}:
     put:
       summary: Atualiza o registro de pessoa
       tags:
-        - peaple
+        - people
       parameters:
       - name: id
         in: path
@@ -469,7 +469,7 @@ paths:
     delete:
       summary: Deleta um registro de pessoa
       tags:
-        - peaple
+        - people
       parameters:
       - name: id
         in: path
@@ -492,7 +492,7 @@ paths:
     get:
       summary: Retorna a pessoa com o id informado.
       tags:
-        - peaple
+        - people
       parameters: 
       - name: id
         in: path

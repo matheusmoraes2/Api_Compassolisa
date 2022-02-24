@@ -499,11 +499,11 @@
         }
       }
     },
-    "/peaple": {
+    "/people": {
       "post": {
         "summary": "Cria um novo registro de pessoa",
         "tags": [
-          "peaple"
+          "people"
         ],
         "requestBody": {
           "content": {
@@ -581,7 +581,7 @@
       "get": {
         "summary": "Retorna todas as pessoas registradas.",
         "tags": [
-          "peaple"
+          "people"
         ],
         "parameters": [
           {
@@ -690,11 +690,11 @@
         }
       }
     },
-    "/peaple/{id}": {
+    "/people/{id}": {
       "put": {
         "summary": "Atualiza o registro de pessoa",
         "tags": [
-          "peaple"
+          "people"
         ],
         "parameters": [
           {
@@ -760,7 +760,7 @@
       "delete": {
         "summary": "Deleta um registro de pessoa",
         "tags": [
-          "peaple"
+          "people"
         ],
         "parameters": [
           {
@@ -797,7 +797,7 @@
       "get": {
         "summary": "Retorna a pessoa com o id informado.",
         "tags": [
-          "peaple"
+          "people"
         ],
         "parameters": [
           {
