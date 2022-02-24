@@ -20,7 +20,7 @@ describe('testando features da rota de Rental', () => {
     db = await connection.db(global.compassolisa);
     rental.testRental = await RentalService.create({
       nome: 'Localiza Rent a Car',
-      cnpj: '78.191.720/5587-44',
+      cnpj: '78.179.720/5587-44',
       atividades: 'Aluguel de Carros E Gestão de Frotas',
       endereco: [
         {

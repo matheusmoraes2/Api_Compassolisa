@@ -20,9 +20,9 @@ describe('testando features da rota de People', () => {
     db = await connection.db(global.compassolisa);
     people.testPeople = await PeopleService.create({
       nome: 'matheus',
-      cpf: '132.782.111-74',
+      cpf: '172.782.111-74',
       data_nascimento: '14/06/2000',
-      email: 'matheusm4oa5s543da54raes32546@hotmail.com',
+      email: 'matheusm4oa5s543da54raes328546@hotmail.com',
       senha: '123456789',
       habilitado: 'não'
     });
