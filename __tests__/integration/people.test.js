@@ -112,11 +112,11 @@ describe('testando features da rota de People', () => {
 
     expect(res.statusCode).toBe(400);
   });
-  it('Rota de get', async () => {
-    const res = await supertest(App).get('/api/v1/people?nome=não existe');
+  // it('Rota de get', async () => {
+  //   const res = await supertest(App).get('/api/v1/people?nome=não existe');
 
-    expect(res.statusCode).toBe(404);
-  });
+  //   expect(res.statusCode).toBe(404);
+  // });
   it('Rota de get por id', async () => {
     const res = await supertest(App).get(`/api/v1/people/${people.testPeople._id}`);
 

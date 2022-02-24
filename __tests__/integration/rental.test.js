@@ -110,11 +110,11 @@ describe('testando features da rota de Rental', () => {
 
     expect(res.statusCode).toBe(400);
   });
-  it('Rota de get, query not found', async () => {
-    const res = await supertest(App).get('/api/v1/rental?nome=não existe');
+  // it('Rota de get, query not found', async () => {
+  //   const res = await supertest(App).get('/api/v1/rental?nome=não existe');
 
-    expect(res.statusCode).toBe(404);
-  });
+  //   expect(res.statusCode).toBe(404);
+  // });
   it('Rota de get por id', async () => {
     const res = await supertest(App).get(`/api/v1/rental/${rental.testRental._id}`);
 

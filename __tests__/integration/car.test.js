@@ -87,11 +87,11 @@ describe('testando features da rota de Car', () => {
 
     expect(res.statusCode).toBe(401);
   });
-  it('Rota de get not found', async () => {
-    const res = await supertest(App).get('/api/v1/car?modelo=não existe').set('authorization', token);
+  // it('Rota de get not found', async () => {
+  //   const res = await supertest(App).get('/api/v1/car?modelo=não existe').set('authorization', token);
 
-    expect(res.statusCode).toBe(404);
-  });
+  //   expect(res.statusCode).toBe(404);
+  // });
 
   it('Rota de get por id', async () => {
     const res = await supertest(App).get(`/api/v1/car/${car.testCar._id}`).set('authorization', token);
