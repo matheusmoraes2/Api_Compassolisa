@@ -7,7 +7,7 @@ externalDocs:
   description: Documentação
   url: https://github.com/matheusmoraes2/Api_Compassolisa
 servers:
-- url: http://localhost:3000/api/v1
+- url: https://compassolisa-matheus.herokuapp.com/api/v1
   description: Api Compassolisa
 components:
   securitySchemes:
