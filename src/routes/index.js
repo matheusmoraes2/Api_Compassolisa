@@ -4,6 +4,7 @@ const peapleRouter = require('./peaple.router');
 const loginRouter = require('./login.router');
 const rentalRouter = require('./rental.router');
 const reserveRouter = require('./reserve.router');
+const swaggerRouter = require('./swagger.router');
 
 module.exports = (server) => {
   server.use((req, res, next) => {
@@ -12,6 +13,7 @@ module.exports = (server) => {
     loginRouter(server, new Router());
     rentalRouter(server, new Router());
     reserveRouter(server, new Router());
+    server.use(swaggerRouter, new Router());
     next();
   });
 };

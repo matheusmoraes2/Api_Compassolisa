@@ -9,9 +9,17 @@ externalDocs:
 servers:
 - url: http://localhost:3000/api/v1
   description: Api Compassolisa
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 paths:
   /car:
     post:
+      security:
+        - bearerAuth: []
       summary: Cria um novo registro de carro
       tags:
         - car
@@ -66,7 +74,9 @@ paths:
           content:
             application/json:
               example: "não foi possivel cadastrar o carro"
-    get: 
+    get:
+      security:
+        - bearerAuth: []
       summary: Retorna todos os carros registrados.
       tags:
         - car
@@ -141,6 +151,8 @@ paths:
               example: "Not found"
   /car/{id}:
     put:
+      security:
+        - bearerAuth: []
       summary: Atualiza o registro do carro
       tags:
         - car
@@ -185,6 +197,8 @@ paths:
             application/json:
               example: "Invalid body"
     delete:
+      security:
+        - bearerAuth: []
       summary: Deleta um registro de carro
       tags:
         - car
@@ -208,6 +222,8 @@ paths:
             application/json:
               example: "Invalid body"
     get:
+      security:
+        - bearerAuth: []
       summary: Retorna o carro com o id informado.
       tags:
         - car
@@ -240,6 +256,8 @@ paths:
                       properties:
                         descricao:
                           type: string
+                        _id:
+                          type: string
                   quantidadePassageiros:
                     type: number
         404:
@@ -247,6 +265,45 @@ paths:
           content:
             application/json:
               example: "Not found"
+  /car/{id}/acessorios/{idacessorio}:
+    patch:
+      security:
+        - bearerAuth: []
+      summary: Atualiza a descrição de um acessório
+      tags:
+        - car
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: idacessorio
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        204:
+          description: Atualizado com sucesso.
+        404: 
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not found"
+        400:
+          description: Invalid body
+          content:
+            application/json:
+              example: "Invalid body"
   /peaple:
     post: 
       summary: Cria um novo registro de pessoa

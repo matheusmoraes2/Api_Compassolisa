@@ -15,9 +15,23 @@
       "description": "Api Compassolisa"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "paths": {
     "/car": {
       "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Cria um novo registro de carro",
         "tags": [
           "car"
@@ -106,6 +120,11 @@
         }
       },
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Retorna todos os carros registrados.",
         "tags": [
           "car"
@@ -224,6 +243,11 @@
     },
     "/car/{id}": {
       "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Atualiza o registro do carro",
         "tags": [
           "car"
@@ -295,6 +319,11 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Deleta um registro de carro",
         "tags": [
           "car"
@@ -332,6 +361,11 @@
         }
       },
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Retorna o carro com o id informado.",
         "tags": [
           "car"
@@ -373,6 +407,9 @@
                         "properties": {
                           "descricao": {
                             "type": "string"
+                          },
+                          "_id": {
+                            "type": "string"
                           }
                         }
                       }
@@ -382,6 +419,72 @@
                     }
                   }
                 }
+              }
+            }
+          },
+          "404": {
+            "description": "Carro não encontrado",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/{id}/acessorios/{idacessorio}": {
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Atualiza a descrição de um acessório",
+        "tags": [
+          "car"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "idacessorio",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Atualizado com sucesso."
+          },
+          "400": {
+            "description": "Invalid body",
+            "content": {
+              "application/json": {
+                "example": "Invalid body"
               }
             }
           },
